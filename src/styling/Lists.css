@@ -1,0 +1,45 @@
+/*LISTS*/
+/*ListMovies (select from existing lists*/
+.list-selection {
+    position: relative;
+    list-style: none;
+    font-family: 'bebas neue', sans-serif;
+    font-size: 1rem;
+    color: var(--warm-beige);
+    text-align: left;
+    left: 1rem;
+}
+.list-selection:hover {
+    cursor: pointer;
+}
+.list-selection li:hover {
+    transform: translateY(4px) scale(1.02);
+}
+/*ListEdit*/
+.lists-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    margin: 15px;
+    gap: 1rem;
+}
+.list-item {
+    margin-bottom: 1em;
+    padding: 1rem;
+    background: transparent;
+    border-radius: 1rem;
+    box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+}
+.list-item.expanded {
+    height: 200px;
+}
+.list-header {
+    cursor: pointer;
+    font-family: 'bebas neue', sans-serif;
+    color: var(--warm-beige);
+}
+
