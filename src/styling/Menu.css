@@ -1,0 +1,36 @@
+.menu-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+}
+
+.menu-toggle {
+    background-color: transparent;
+    color: var(--warm-beige);
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.menu-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    z-index: 100;
+    font-family: oswald, sans-serif;
+    gap: 1rem;
+}
+.saved-recommendations {
+    list-style: none;
+    color: var(--warm-beige);
+    font-family: oswald, sans-serif;
+
+}
