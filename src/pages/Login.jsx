@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {jwtDecode} from 'jwt-decode';
-
-console.log(jwtDecode(localStorage.getItem("token")));
 import api from "../api/api.js";
 import {useNavigate} from 'react-router-dom';
 import {useUser} from "../context/UserContext.jsx";

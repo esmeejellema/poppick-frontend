@@ -15,7 +15,7 @@ import '../styling/Animations.css';
 import '../styling/Titles.css';
 import '../styling/Container.css';
 import '../styling/Wrapper.css';
-import '../styling/progressbar.css';
+import '../styling/Progressionbar.css';
 import '../styling/Menu.css';
 
 function Quiz() {
