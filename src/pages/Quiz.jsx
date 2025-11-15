@@ -21,6 +21,7 @@ import '../styling/Menu.css';
 function Quiz() {
     // State
     const [step, setStep] = useState(1);
+    const [errorMessage, setErrorMessage] = useState("");
     const [recommendation, setRecommendation] = useState();
     const [movies, setMovies] = useState([]);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -78,14 +79,18 @@ function Quiz() {
             console.warn("Missing userId or recommendation.id");
             return;
         }
-
         try {
             const response = await api.post(`/recommendations`, null, {
-                params: { userId, movieId: recommendation.id },
+                params: {userId, movieId: recommendation.id},
             });
             console.log("Recommendation saved:", response.data);
+            alert("Recommendation saved!");
         } catch (error) {
-            console.error("Error saving recommendation:", error.response?.data || error.message);
+            if (error.response?.status === 409) {
+                alert("This recommendation is already saved!");
+            } else {
+                console.error("Error saving recommendation:", error.response?.data || error.message);
+            }
         }
     }
 
@@ -107,6 +112,17 @@ function Quiz() {
             console.error("Error fetching recommendations:", error.response?.data || error.message);
         }
     }
+        // async function deleteAllRecommendations(userId) {
+        //     if (!userId) return;
+        //
+        //     try {
+        //         await api.delete(`/recommendations/${userId}`);
+        //         setUserRecommendations([]);
+        //         alert("All recommendations deleted!");
+        //     } catch (error) {
+        //         console.error("Error deleting recommendations:", error.response?.data || error.message);
+        //     }
+        // }
 
     // Handler for business logic
     const handleAnswerSubmit = () => {
@@ -129,6 +145,8 @@ function Quiz() {
         }
         if (filtered.length === 0) {
             setRecommendation(null);
+            setErrorMessage("Unfortunately, no movies match your answers");
+            return;
         } else {
             const selectedMovie = filtered.length > 0
                 ? filtered[Math.floor(Math.random() * filtered.length)]
@@ -232,6 +250,11 @@ function Quiz() {
                                     ))}
                                 </ul>
                             )}
+                            {/*<button*/}
+                            {/*    className="button-primary" onClick={() => deleteAllRecommendations(userId)}>*/}
+                            {/*    Delete all*/}
+                            {/*</button>*/}
+
                         </div>
                     )}
                     <button
@@ -262,8 +285,23 @@ function Quiz() {
                     <button className="button-secondary" onClick={handleAnswerSubmit}>
                         Submit
                     </button>
-
                 )}
+                {errorMessage && (
+                    <div className="error-overlay">
+                        <div className="error-box">
+                            <div className="error-message">
+                                {errorMessage}
+                            </div>
+                            <button
+                                className="button-secondary"
+                                onClick={() => window.location.reload()} // of reset quiz state
+                            >
+                                Try Again
+                            </button>
+                        </div>
+                    </div>
+                )}
+
             </div>
         </div>
     );
