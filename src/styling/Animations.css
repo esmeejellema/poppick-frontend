@@ -133,3 +133,39 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/*error message after submit (quiz)*/
+/* overlay over hele quiz */
+.error-overlay {
+    position: fixed; /* boven alles */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5); /* vervaging / donkere achtergrond */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* boven alles */
+}
+
+/* box met error message */
+.error-box {
+    background: transparent;
+    color: #fff;
+    font-size: 3rem;
+    font-family: 'oswald', sans-serif;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* optioneel: fade animation */
+.error-overlay.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
